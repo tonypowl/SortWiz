@@ -1,31 +1,38 @@
-#include <iostream>
-using namespace std; 
+#include <iostream>  
+#include <vector>    
+#include <algorithm> 
 
-//sort elements in ascending order, similar to the way air bubbles move towards the surface of the water
-
-void bubblesort(int arr[], int n){
-    for(int i=0; i<n-1;++i){
-        for(int j=0;j<n-1-i;++j){
-            if(arr[j]>arr[j+1]){
-                int temp=arr[j];
-                arr[j]=arr[j+1];
-                arr[j+1]=temp; 
+void bubbleSort(std::vector<int>& arr) {
+    int n = arr.size(); 
+    for (int i = 0; i < n - 1; ++i) {
+        for (int j = 0; j < n - 1 - i; ++j) {
+            if (arr[j] > arr[j + 1]) {
+                std::swap(arr[j], arr[j + 1]);
             }
         }
     }
 }
 
-int main(){
-    int n; 
-    cin >> n;
+void printVector(const std::vector<int>& arr) {
+    for (int x : arr) { 
+        std::cout << x << " ";
+    }
+    std::cout << std::endl;
+}
 
-    int arr[n];
-    for(int i=0;i<n;++i){
-        cin >> arr[i];
+int main() {
+    int n;
+    std::cout << "Enter the number of elements: ";
+    std::cin >> n;
+    std::vector<int> arr(n);
+    std::cout << "Enter " << n << " integers:\n";
+    for (int i = 0; i < n; ++i) {
+        std::cin >> arr[i]; 
     }
-    bubblesort(arr,n);
-    for(int i=0; i<n; ++i){
-        cout << arr[i] << " ";
-    }
-    cout << endl; 
+    std::cout << "Original array: ";
+    printVector(arr);
+    bubbleSort(arr); 
+    std::cout << "Sorted array: ";
+    printVector(arr);
+    return 0;
 }
